@@ -11,8 +11,9 @@
 <body class="body page-index clearfix">
   <div class="container clearfix">
     <div id="panel">
-      <input id="address" type="textbox" value="Enter City, State, Country">
-      <input type="button" value="Search" onclick="codeAddress()">
+      <input id="address" type="textbox" value="City, State, Country" onkeydown = "if (event.keyCode == 13)
+                        document.getElementById('button').click()"  >
+      <input id = "button" type="button" value="Search" onclick="codeAddress()">
     </div>
     <p class="location"></p>
     <p class="temperature"></p>

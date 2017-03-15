@@ -28,6 +28,14 @@
   overflow: hidden;
 }
 
+input{
+  display: inline-block;
+  float: left;
+  border: 2px solid black;
+  border-radius: 4px;
+}
+
+
 .container {
   position: absolute;
   top: 0;

@@ -6,7 +6,7 @@ if ("geolocation" in navigator) {
 }
 
   function error1() {
-    errorText = "Enter City in Search"
+    errorText = "Enter Your Location in Search Bar"
      $(".location").text(errorText);
 
   }
