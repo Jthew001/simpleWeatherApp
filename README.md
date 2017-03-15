@@ -1,12 +1,13 @@
-# simpleWeatherApp
-Web app built for html using javascript and css
+# weather-app
 
-I created this app by taking a project from https://github.com/subhroisback/weather-app/archive/master.zip
+Css and inital html taken from  https://github.com/subhroisback/weather-app/archive/master.zip
 
-and then adding the ability to serach for weather at a location using the goolge maps api to get lat and long of location given, in a simple looking web app
+But, it only pulls from geolocation, so we need to build in a find my location and search functionality 
 
-clone my repository and open the index.html to see the app (git clone https://github.com/Jthew001/simpleWeatherApp)
+The idea I am pursuing now in the code in test.html the code taken from http://stackoverflow.com/questions/11033451/find-the-latitude-and-longitude-using-javascript (author Abhishek)
 
-This is still a work in progress, this is being made and modified for a class so I figured I woud share :)
+double click on index.html to run the code, it will open a web browser
 
-Enjoy
+You can enter a location and click the serach button and it will return the weather at the location
+
+This is not yet implemented into the html on the unix server

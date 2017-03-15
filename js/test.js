@@ -6,9 +6,7 @@ if ("geolocation" in navigator) {
 }
 
   function error1() {
-    errorText = "Enter City in Search"
-     $(".location").text(errorText);
-
+    loadWeather("Plattsburgh,US","");
   }
     navigator.geolocation.getCurrentPosition(success1,error1);
 } else{
