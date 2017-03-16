@@ -37,8 +37,17 @@ function loadWeather(location, woeid){
         woeid: woeid,
         unit: 'F',
         success: function(weather){
-            region_city = weather.city+","+weather.region;
-            temp = weather.temp + '&deg;';
+            if (weather.country == "United States" || weather.country == 'The Bahamas' || 
+                weather.country == "Belize" || weather.country == "Cayman Islands" || 
+                weather.country == "Palau" || weather.country == "Puerto Rico" ||
+                weather.country == "Guam" || weather.country == "US Virgin Islands"){
+                temp = weather.temp + '&deg;' + 'F';  
+            }
+            else{
+                temp = Math.round((weather.temp -32)*(5/9))+ '&deg;' + 'C';
+            }
+            region_city =weather.city+","+weather.region
+            
             wcode = '<img class="weathericon" src="images/weathericons/'+weather.code+'.svg">';
             wind = '<p>'+weather.wind.speed+'</p><p>'+weather.units.speed+'</p>';
             humidity = weather.humidity+' %';

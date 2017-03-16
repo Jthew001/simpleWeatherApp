@@ -103,9 +103,9 @@ input{
 .location {
   position: absolute;
   top: 128px;
-  left: 63px;
+  left: 23px;
   z-index: 8;
-  width: 148px;
+  width: 270px;
   min-height: 59px;
   font-size: 1.313em;
   font-weight: 400;
@@ -117,7 +117,7 @@ input{
 .temperature {
   position: absolute;
   top: 38px;
-  left: 102px;
+  left: 70px;
   z-index: 7;
   width: 109px;
   min-height: 28px;
