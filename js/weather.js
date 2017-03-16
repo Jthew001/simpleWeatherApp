@@ -17,7 +17,7 @@ if ("geolocation" in navigator) { //If geolocation is available, ask browser
 }
 
 $(document).ready(function(){ 
-    setInterval(getWeather,10000); // How often it updates
+    setInterval(getWeather,600000); // How often it updates
     //The weather feed is updated every 4 hours!!!!!
 });
 
