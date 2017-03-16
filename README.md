@@ -10,6 +10,6 @@ do git clone (my git url) and then open the index.html to see the app
 
 Edited the code so if you are in a country that uses Fahrenheitit will show Fahrenheit and respectivly for Celcius
 
-3/16 addition: You can now click /c or /f to the right of the temp and it will show the temp in Celsius for /c or Farenheit for /f
+The weather feed from Yahoo is updated every 4 hours, which makes since concidering the info is free
 
 not yet implemented on the unix server yet
