@@ -2,12 +2,8 @@
 
 Css and inital html taken from  https://github.com/subhroisback/weather-app/archive/master.zip
 
-But, it only pulls from geolocation, so we need to build in a find my location and search functionality 
+Serach using google api, using lat and long taken from http://stackoverflow.com/questions/11033451/find-the-latitude-and-longitude-using-javascript (author Abhishek)
 
-The idea I am pursuing now in the code in test.html the code taken from http://stackoverflow.com/questions/11033451/find-the-latitude-and-longitude-using-javascript (author Abhishek)
+The app now will ask for location and if access is denied then it will display text saying enter your location (not preferable, but becuase of firefox where if the user say don't give my location the load weather for a location won't work I coded it like mentioned to be consistant on any browser)
 
-double click on index.html to run the code, it will open a web browser
-
-You can enter a location and click the serach button and it will return the weather at the location
-
-This is not yet implemented into the html on the unix server
+do git clone (my git url) and then open the index.html to see the app
