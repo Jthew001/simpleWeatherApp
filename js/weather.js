@@ -50,7 +50,17 @@ function ChangeTemp(){ //Func that allows click on /f or /c to work, converts te
         elem.value = "/ C";
     }
 }
-function loadWeather(location, woeid){ // Main weather loading func 
+
+function TempSanityCheck() {
+        $(".temperature").text("Inaccurate");
+        document.getElementById("temperature").style.fontSize = "xx-large";
+        document.getElementById("temperature").style.left = "50px";
+        document.getElementById("temperature").style.top = "70px";
+        var elem = document.getElementById("convert");
+        elem.value == "";
+}
+
+function loadWeather(location, woeid,tempatureVal = false){ // Main weather loading func 
     $.simpleWeather({
         location: location,
         woeid: woeid,
@@ -58,17 +68,29 @@ function loadWeather(location, woeid){ // Main weather loading func
         success: function(weather){ //if it was able to get the simpleWeather API then...
             var elem = document.getElementById("convert");
             tempStore = weather.temp;
+            
             countryStore = weather.country // Checks to see if the country entered uses F
             if (weather.country == "United States" || weather.country == 'The Bahamas' || 
                 weather.country == "Belize" || weather.country == "Cayman Islands" || 
                 weather.country == "Palau" || weather.country == "Puerto Rico" ||
                 weather.country == "Guam" || weather.country == "US Virgin Islands"){
+                if(weather.temp > 120 || weather.temp < -30){
+                    TempSanityCheck()
+                }
+                else{
                 elem.value = "/ C";
                 temp = weather.temp + '&deg;' + 'F';  
+                }
             }
             else{
+                if(weather.temp > 120 || weather.temp < -30){
+                    TempSanityCheck()
+                }
+                else{
                 elem.value = "/ F";
                 temp = Math.round((weather.temp -32)*(5/9))+ '&deg;' + 'C';
+
+            }
             }
             last_update = 'Last Updated: ' + weather.updated
             region_city =weather.city+","+weather.region
