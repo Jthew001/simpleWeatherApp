@@ -1,14 +1,21 @@
-if ("geolocation" in navigator) { //If geolocation is available, ask browser
+
+if("geolocation" in navigator) { //If geolocation is available, ask browser
     function success1(position) { // If geolocation is accepted, the func will return data
     var latitude  = position.coords.latitude;
     var longitude = position.coords.longitude;
     loadWeather(latitude+','+longitude);
 }
-
-  function error1() { //If Geolocation request is denied the func will do this
-    errorText = "Enter Your Location in Search Bar" //Will be displayed if error1 func is processed
-    $(".location").text(errorText); // Render text above in the location position
-
+    
+    TempLocation = ""; //Var that will stored college from db
+    function error1() { //If Geolocation request is denied the func will do this
+    
+    if(TempLocation != ""){
+        document.getElementById("address").value = TempLocation;
+        codeAddress()
+    } else{
+        errorText = "Enter Your Location in Search Bar" //Will be displayed if error1 func is processed
+        $(".location").text(errorText); // Render text above in the location position
+    }
   }
     navigator.geolocation.getCurrentPosition(success1,error1); /* function that gets position, and if 
     geolocation was allowed with return what success1 gave it else, it will use what error1 gave it*/
@@ -36,18 +43,28 @@ function codeAddress() { /*Using Google maps API, gets lat and long and will loa
 
 tempStore = 0 //var needed for func below to work 
 countryStore = "" //var needed for func below to work 
+highTempStore = 0
+lowTempStore = 0
 function ChangeTemp(){ /*Func that allows click on /f or /c to work, converts temp, in the loadWeather func
     you will need to change the if to TempTest to artifically use this func*/
     var elem = document.getElementById("convert");//look at the button with id convert in index.html
     if(elem.value == "/ C"){ // if button is set to / C
         temperature = Math.round((tempStore -32)*(5/9))+ '&deg;' + 'C'; // On click it will convert
+        day_high = 'Hi: ' +Math.round((highTempStore -32)*(5/9))+ '&deg;' + 'C'; // day high in C
+        day_low = 'Low: '+Math.round((lowTempStore -32)*(5/9))+ '&deg;' + 'C'; // day low in C
         //temperature = 100 + '&deg;' + 'C'; //110 degree test
         $(".temperature").html(temperature); // in the tempature location it will render the conveter temp
+        $(".day_high").html(day_high);
+        $(".day_low").html(day_low);
         elem.value = "/ F"; // set button to / F
     }
     else{
         temperature =  tempStore+ '&deg;' + 'F'; //If button is / F
+        day_high = 'Hi: ' +highTempStore + '&deg;' + 'F'; //day high in F
+        day_low = 'Low: '+lowTempStore + '&deg;' + 'F'; // day low in F
         $(".temperature").html(temperature); // on click render temp in F
+        $(".day_high").html(day_high);
+        $(".day_low").html(day_low);
         elem.value = "/ C"; // set button to / C
     }
 }
@@ -70,7 +87,8 @@ function loadWeather(location, woeid,TempTest = false){ /*Main weather loading f
         success: function(weather){ //if it was able to get the simpleWeather API then...
             var elem = document.getElementById("convert");
             tempStore = weather.temp; // Needed for ChangeTemp func to work 
-            
+            highTempStore = weather.high
+            lowTempStore = weather.low
             countryStore = weather.country // Checks to see if the country entered uses F, needed for ChangeTemp
             if (weather.country == "United States" || weather.country == 'The Bahamas' || 
                 weather.country == "Belize" || weather.country == "Cayman Islands" || 
@@ -82,6 +100,8 @@ function loadWeather(location, woeid,TempTest = false){ /*Main weather loading f
                 else{
                 elem.value = "/ C"; // sets button to / C
                 temp = weather.temp + '&deg;' + 'F'; // displays temp in F
+                day_high = 'Hi: ' +weather.high + '&deg;' + 'F';
+                day_low = 'Low: '+weather.low + '&deg;' + 'F';
                 }
             }
             else{
@@ -91,6 +111,8 @@ function loadWeather(location, woeid,TempTest = false){ /*Main weather loading f
                 else{
                 elem.value = "/ F";// sets button to / F
                 temp = Math.round((weather.temp -32)*(5/9))+ '&deg;' + 'C'; // conversion from F to C
+                day_high = 'Hi: ' +Math.round((weather.high -32)*(5/9))+ '&deg;' + 'C';
+                day_low = 'Low: '+Math.round((weather.low -32)*(5/9))+ '&deg;' + 'C';
 
             }
             }
@@ -107,6 +129,8 @@ function loadWeather(location, woeid,TempTest = false){ /*Main weather loading f
             $(".windspeed").html(wind);
             $(".humidity").text(humidity);
             $(".updated").text(last_update);
+            $(".day_high").html(day_high);
+            $(".day_low").html(day_low);
         },
         error: function(error){ // if error getting to API display the error below
             $(".error").html('<p>'+error+'</p>');

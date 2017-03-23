@@ -18,6 +18,8 @@ And if you find an issue where you set your browser to allow location services (
 
 Now does sanity check on temp
 
+Added daily high and low 
+
 not yet implemented on the unix server yet
 
 Need to get with html page writer and have him implement the code into html
